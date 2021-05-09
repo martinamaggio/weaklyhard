@@ -185,9 +185,11 @@ class R2_Constraint(WH_Constraint):
     lh = [len(list(g)) if k else 0 for k, g in groupby(sequence, lambda x: x == 1)]
     groups = len(lm)  # number of unique groups
 
-    for j in range(groups-1):  # the last one could be misses
+    # the last one could be misses (avoid checking that)
+    # and the last hits may not be complete (sequence cut)
+    for j in range(groups-1):
       if 0 < lm[j] <= self.x:
-        if lh[j+1] < self.w - lm[j]:
+        if lh[j+1] < self.w - lm[j] and j+1 is not groups-1:
           return False
     # if we pass the check above
     # check that we don't have more than self.x consecutive misses
