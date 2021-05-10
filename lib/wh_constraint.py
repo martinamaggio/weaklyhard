@@ -144,7 +144,7 @@ class RH_Constraint(WH_Constraint):
     for i in range(len(sequence) - self.w):
       window = sequence[i:i + self.w]
       len_g_hits = [len(list(g)) for k, g in groupby(window, lambda x: x == 1) if k]
-      if max(len_g_hits) < self.x:
+      if len(len_g_hits) == 0 or max(len_g_hits) < self.x:
         return False
     return True
 

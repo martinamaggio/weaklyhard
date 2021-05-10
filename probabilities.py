@@ -5,7 +5,7 @@ if __name__ == '__main__':
 
   num_sequence = 10000
   len_sequence = 15
-  c = RH_Constraint(2, 5)
+  c = RH_Constraint(1, 6)
 
   misses = [0] * len_sequence
   for i in range(num_sequence):
